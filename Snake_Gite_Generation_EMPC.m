@@ -31,7 +31,7 @@ V_phi_max=0.109;
 phi = SX.sym('Phi',R.Nl-1,1);theta = SX.sym('theta' );Px = SX.sym('Px');Py = SX.sym('Py');
 Vphi = SX.sym('Vphi',R.Nl-1,1);Vtheta = SX.sym('Vtheta');Vt = SX.sym('Vt');Vn = SX.sym('Vn');
 states = [phi;theta;Px;Py;Vphi;Vtheta;Vt;Vn]; %State vactor 
-n_states = size(states,1);%Get the number of state£¬save with formal£¨n_states, 1£©
+n_states = size(states,1);%Get the number of stateÂ£Â¬save with formalÂ£Â¨n_states, 1Â£Â©
 
 %Control vactor
 u = SX.sym('u',R.Nl-1,1);
@@ -217,7 +217,7 @@ while(luiter < sim_tim / R.T)
         dphi_ref(i)=A.alpha*A.omega*cos(A.omega*A.t+(i-1)*A.delta);
         ddphi_ref(i)=-A.alpha*A.omega*A.omega*sin(A.omega*A.t+(i-1)*A.delta);
     end
-    u_u1=ddphi_ref'+A.kvphi*(dphi_ref'-st(R.Nl+3:2*R.Nl+1))+A.kphi*(phi_ref'-st(1:R.Nl-1));%¿ØÖÆÆ÷ P134 (8.20)
+    u_u1=ddphi_ref'+A.kvphi*(dphi_ref'-st(R.Nl+3:2*R.Nl+1))+A.kphi*(phi_ref'-st(1:R.Nl-1));%Â¿Ã˜Ã–Ã†Ã†Ã· P134 (8.20)
     u11=R.m*(R.D*R.D')\(u_u1+R.cn/R.m*st(R.Nl+3:2*R.Nl+1)-R.cp/R.m*st(2*R.Nl+3)*R.A*R.D'*st(1:R.Nl-1));%P133 (8.19)
     u_cllu= [u_cllu ; u11(1)];
     st_next = (st(1:R.Nl-1)+R.T*st(R.Nl+3:2*R.Nl+1));
@@ -250,7 +250,7 @@ plot(x,[-V_phi_max -V_phi_max],'--','color',[1,0.5,0],'linewidth',1.5);
 legend([a,b],'LU','EMPC')
 axis([0 time_step(end) -0.15 0.15])
 xlabel('Time Steps (1/20 s)')
-ylabel('Joint V elocity v¦Õ,3(m/s)')
+ylabel('Joint V elocity vÂ¦Ã•,3(m/s)')
 box on
 axes('Position',[0.65,0.2,0.2,0.3]);
 axis([155 180 0 0.12])
